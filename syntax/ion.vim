@@ -1,3 +1,4 @@
+" Check editor version
 if version < 600
   syntax clear
 elseif exists("b:current_syntax")
@@ -71,6 +72,37 @@ syntax keyword ionKeyword unalias
 syntax keyword ionKeyword wait
 syntax keyword ionKeyword while
 
+" Get current BackgroundTheme of terminal (xterm)
+let g:background = system('./gettheme.sh')
+let g:theme = strpart(g:background, 7, 10)
+
+if g:theme ==# 'LightTheme'
+
+hi Operator    cterm=bold ctermfg=black
+hi Array       cterm=bold ctermfg=darkblue
+hi String      cterm=bold ctermfg=darkgreen
+hi DoubleQuote ctermfg=darkgreen
+hi SingleQuote ctermfg=darkgreen
+hi Numbers     ctermfg=darkyellow
+hi! Comment    ctermfg=darkgrey cterm=italic
+hi Keywords    ctermfg=magenta cterm=bold
+hi Flag        cterm=bold ctermfg=darkyellow
+
+hi def link ionKeyword Keywords
+hi def link arrayVar Array
+hi def link variable String
+hi def link ionNumber Numbers
+hi def link doubleQuote DoubleQuote
+hi def link singleQuote SingleQuote
+hi def link process PreProc
+hi def link comment Comment
+hi def link operator Operator
+hi def link flag Flag
+
+
+else
+" DarkTheme
+
 hi Operator    cterm=bold ctermfg=white
 hi Array       cterm=bold ctermfg=lightblue
 hi String      cterm=bold ctermfg=lightmagenta
@@ -91,3 +123,5 @@ hi def link process PreProc
 hi def link comment Comment
 hi def link operator Operator
 hi def link flag Flag
+
+endif
