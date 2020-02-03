@@ -125,3 +125,5 @@ hi def link operator Operator
 hi def link flag Flag
 
 endif
+
+let b:current_syntax = "ion"
